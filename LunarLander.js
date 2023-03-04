@@ -2,7 +2,7 @@
 
 function setup() {
   createCanvas(600, 650);
-  frameRate(30);
+  frameRate(35);
   background(255, 255, 255);
 }
 
@@ -168,7 +168,7 @@ function WinScreen() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("Try again? 😮‍💨 Press space.", 150, 250);
+  text("An overachiver? 😮‍💨 Play again.", 150, 250);
 
   pop();
 }
