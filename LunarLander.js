@@ -83,18 +83,24 @@ function penguin(pengx, pengy) {
 
   // wings
   fill(150, 150, 150);
+
   push();
+
   translate(-25, 400);
   rotate((sin(wingAngle) * PI) / 8);
   triangle(0, 0, -35, -30, -5, -40);
+
   pop();
+
   push();
+
   translate(25, 400);
   rotate((-sin(wingAngle) * PI) / 8);
   triangle(0, 0, 35, -30, 5, -40);
+
   pop();
 
-  wingAngle += 0.1;
+  wingAngle += 0.2;
 
   pop();
 
@@ -151,7 +157,7 @@ function FirstScreen() {
 
   fill(255, 255, 255);
   textSize(40);
-  text("Press space to start 🧊", 140, 200);
+  text("Press space to start 🧊", 100, 200);
 
   pop();
 
@@ -159,7 +165,7 @@ function FirstScreen() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("Press the up key to control the penguin. 🐧", 150, 250);
+  text("Press the up key to control the penguin. 🐧", 115, 250);
 
   pop();
 }
