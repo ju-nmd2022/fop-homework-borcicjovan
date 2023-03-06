@@ -12,6 +12,7 @@ let pengx = 550;
 let pengy = -420;
 let velocity = 1;
 let acceleration = 0.2;
+let wingAngle = 0;
 
 // key functions
 
@@ -45,16 +46,7 @@ function drawParticle(particle) {
   translate(particle.x, particle.y);
   noStroke();
   fill(255, 255, 255, 140);
-  ctx.beginPath();
-  ctx.moveTo(centerX, centerY - size);
-  ctx.lineTo(centerX, centerY + size);
-  ctx.moveTo(centerX - size, centerY);
-  ctx.lineTo(centerX + size, centerY);
-  ctx.moveTo(centerX - size, centerY - size);
-  ctx.lineTo(centerX + size, centerY + size);
-  ctx.moveTo(centerX - size, centerY + size);
-  ctx.lineTo(centerX + size, centerY - size);
-  ctx.stroke();
+  ellipse(0, 0, 3);
   pop();
 }
 
@@ -74,19 +66,41 @@ for (let i = 0; i < 500; i++) {
 
 function penguin(pengx, pengy) {
   push();
+
   translate(300, pengy);
+
+  push();
+
+  stroke(255, 255, 255);
 
   // body
   fill(110, 110, 110);
   ellipse(0, 400, 80, 100);
 
-  // belly
-  fill(255);
-  ellipse(0, 420, 50, 60);
-
   // head
   fill(150, 150, 150);
   ellipse(0, 360, 50, 60);
+
+  // wings
+  fill(150, 150, 150);
+  push();
+  translate(-25, 400);
+  rotate((sin(wingAngle) * PI) / 8);
+  triangle(0, 0, -35, -30, -5, -40);
+  pop();
+  push();
+  translate(25, 400);
+  rotate((-sin(wingAngle) * PI) / 8);
+  triangle(0, 0, 35, -30, 5, -40);
+  pop();
+
+  wingAngle += 0.1;
+
+  pop();
+
+  // belly
+  fill(255);
+  ellipse(0, 420, 50, 60);
 
   // eyes
   fill(255);
@@ -105,20 +119,26 @@ function penguin(pengx, pengy) {
   pop();
 }
 
-// ice gleciar bottom
+// ice gleciar drawing
+
 function ice() {
+  push();
+
   fill(0, 190, 255);
+  stroke(255, 255, 255);
+  strokeWeight(3);
   ellipse(0, 600, 180, 100);
   ellipse(50, 630, 180, 100);
   ellipse(550, 630, 180, 100);
   ellipse(600, 620, 80, 180);
-  stroke(255, 255, 255);
   rect(0, 600, 700, 100);
+
+  pop();
 }
 
 // first screen
 
-function StartScreen() {
+function FirstScreen() {
   background(0, 0, 0);
   for (let particle of particles) {
     drawParticle(particle);
@@ -144,7 +164,9 @@ function StartScreen() {
   pop();
 }
 
-function GameScreen() {
+// second screen
+
+function SecondScreen() {
   background(0, 0, 0);
   for (let particle of particles) {
     drawParticle(particle);
@@ -171,7 +193,9 @@ function GameScreen() {
   }
 }
 
-function WinScreen() {
+// screen if they win
+
+function Win() {
   background(0, 0, 0);
   for (let particle of particles) {
     drawParticle(particle);
@@ -185,7 +209,7 @@ function WinScreen() {
 
   fill(80, 117, 175);
   textSize(60);
-  text("I AM ALIVE! 🤯", 130, 200);
+  text("DIDN'T DIE! 🤯", 130, 200);
 
   pop();
 
@@ -193,12 +217,14 @@ function WinScreen() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("An overachiver? 😮‍💨 Play again.", 150, 250);
+  text("An overachiver? 😮‍💨 Play again.", 185, 250);
 
   pop();
 }
 
-function LoseScreen() {
+// screen if they loose
+
+function Lose() {
   background(0, 0, 0);
   for (let particle of particles) {
     drawParticle(particle);
@@ -219,19 +245,21 @@ function LoseScreen() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("Try again? 😮‍💨 Press space.", 150, 250);
+  text("Try again? 😮‍💨 Press space.", 185, 250);
 
   pop();
 }
 
+// making everything show up
+
 function draw() {
   if (state === "start") {
-    StartScreen();
+    FirstScreen();
   } else if (state === "game") {
-    GameScreen();
+    SecondScreen();
   } else if (state === "win") {
-    WinScreen();
+    Win();
   } else if (state === "lose") {
-    LoseScreen();
+    Lose();
   }
 }
