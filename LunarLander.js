@@ -13,22 +13,8 @@ let pengy = -420;
 let velocity = 1;
 let acceleration = 0.2;
 let wingAngle = 0;
-
-// key functions
-
-function keyPressed() {
-  if (state === "start" && keyCode === 32) {
-    state = "game";
-  } else if (state === "lose" && keyCode === 32) {
-    state = "game";
-    pengx = 550;
-    pengy = -420;
-  } else if (state === "win" && keyCode === 32) {
-    state = "game";
-    pengx = 550;
-    pengy = -420;
-  }
-}
+let width = 600;
+let height = 650;
 
 // snow in the background, code taken from Garrit, just looped
 
@@ -254,6 +240,22 @@ function Lose() {
   text("Try again? 😮‍💨 Press space.", 175, 250);
 
   pop();
+}
+
+// key functions
+
+function keyPressed() {
+  if (state === "start" && keyCode === 32) {
+    state = "game";
+  } else if (state === "lose" && keyCode === 32) {
+    state = "game";
+    pengx = 550;
+    pengy = -420;
+  } else if (state === "win" && keyCode === 32) {
+    state = "game";
+    pengx = 550;
+    pengy = -420;
+  }
 }
 
 // making everything show up
