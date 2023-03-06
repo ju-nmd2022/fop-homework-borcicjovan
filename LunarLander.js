@@ -137,7 +137,7 @@ function ice() {
   ellipse(50, 630, 180, 100);
   ellipse(550, 630, 180, 100);
   ellipse(600, 620, 80, 180);
-  rect(0, 600, 700, 100);
+  rect(-10, 600, 620, 100);
 
   pop();
 }
@@ -215,7 +215,7 @@ function Win() {
 
   fill(80, 117, 175);
   textSize(60);
-  text("DIDN'T DIE! 🤯", 130, 200);
+  text("DIDN'T DIE! 🤯", 100, 200);
 
   pop();
 
@@ -223,7 +223,7 @@ function Win() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("An overachiver? 😮‍💨 Play again.", 185, 250);
+  text("An overachiver? 😮‍💨 Play again.", 155, 250);
 
   pop();
 }
@@ -243,7 +243,7 @@ function Lose() {
 
   fill(255, 255, 255);
   textSize(35);
-  text("GIRLIE... I did not make it... 🪦💔", 70, 200);
+  text("GIRLIE... I did not make it... 🪦💔", 50, 200);
 
   pop();
 
@@ -251,7 +251,7 @@ function Lose() {
 
   fill(255, 255, 255);
   textSize(20);
-  text("Try again? 😮‍💨 Press space.", 185, 250);
+  text("Try again? 😮‍💨 Press space.", 175, 250);
 
   pop();
 }
