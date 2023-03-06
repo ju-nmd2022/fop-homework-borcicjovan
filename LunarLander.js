@@ -13,6 +13,22 @@ let pengy = -420;
 let velocity = 1;
 let acceleration = 0.2;
 
+// key functions
+
+function keyPressed() {
+  if (state === "start" && keyCode === 32) {
+    state = "game";
+  } else if (state === "lose" && keyCode === 32) {
+    state = "game";
+    pengx = 550;
+    pengy = -420;
+  } else if (state === "win" && keyCode === 32) {
+    state = "game";
+    pengx = 550;
+    pengy = -420;
+  }
+}
+
 // snow in the background, code taken from Garrit, just looped
 
 let particles = [];
@@ -29,7 +45,16 @@ function drawParticle(particle) {
   translate(particle.x, particle.y);
   noStroke();
   fill(255, 255, 255, 140);
-  ellipse(0, 0, 3);
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY - size);
+  ctx.lineTo(centerX, centerY + size);
+  ctx.moveTo(centerX - size, centerY);
+  ctx.lineTo(centerX + size, centerY);
+  ctx.moveTo(centerX - size, centerY - size);
+  ctx.lineTo(centerX + size, centerY + size);
+  ctx.moveTo(centerX - size, centerY + size);
+  ctx.lineTo(centerX + size, centerY - size);
+  ctx.stroke();
   pop();
 }
 
@@ -83,12 +108,12 @@ function penguin(pengx, pengy) {
 // ice gleciar bottom
 function ice() {
   fill(0, 190, 255);
-  rect(0, 600, 700, 100);
-  noStroke();
   ellipse(0, 600, 180, 100);
   ellipse(50, 630, 180, 100);
   ellipse(550, 630, 180, 100);
   ellipse(600, 620, 80, 180);
+  stroke(255, 255, 255);
+  rect(0, 600, 700, 100);
 }
 
 // first screen
@@ -136,11 +161,11 @@ function GameScreen() {
     velocity = velocity - 0.5;
   }
 
-  if (pengy >= 150 && velocity > 6) {
+  if (pengy >= 150 && velocity > 4) {
     velocity = 1;
     acceleration = 0.2;
     state = "lose";
-  } else if (pengy >= 150 && velocity < 6) {
+  } else if (pengy >= 150 && velocity < 4) {
     velocity = 0;
     state = "win";
   }
@@ -208,19 +233,5 @@ function draw() {
     WinScreen();
   } else if (state === "lose") {
     LoseScreen();
-  }
-}
-
-function keyPressed() {
-  if (state === "start" && keyCode === 32) {
-    state = "game";
-  } else if (state === "lose" && keyCode === 32) {
-    state = "game";
-    pengx = 550;
-    pengy = -420;
-  } else if (state === "win" && keyCode === 32) {
-    state = "game";
-    pengx = 550;
-    pengy = -420;
   }
 }
